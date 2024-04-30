@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albinij 0.4</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+</head>
+<body>
+    <h1>Albinij 0.4 - Custom API Key, Suitable for interactive use</h1>
+    <form action="/" method="get">
+        <label for="artist_name"></label>
+        <input type="text" id="artist_name" name="artist_name" placeholder="Enter artist name"><br>
+		<input type="text" id="artist_id" name="artist_id" placeholder="or enter Artist ID if known"><br>
+		<input type="text" id="api_key" name="api_key" placeholder="Enter API Key" required> <a href="https://www.discogs.com/settings/developers">Get one</a><br>
+        <button type="submit">Search</button>
+    </form>
+    
+    {% if artist_id %}
+    <h2>Artist ID: {{ artist_id }}</h2>
+    {% endif %}
+    
+	<table id="release-table" class="display">
+		<thead>
+			<tr>
+				<th>Artist</th>
+				<th>Title</th>
+				<th>Year</th>
+				<th>Credit</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for release in release_data %}
+			{% for item in release['releases'] %}
+			<tr>
+				<td>{{ item['artist'] }}</td>
+				<td><a href="{{ item['url'] }}" target="_blank">{{ item['title'] }}</a></td>
+				<td>{{ item['year'] }}</td>
+				<td>{{ item['role'] }}</td>
+			</tr>
+			{% endfor %}
+			{% endfor %}
+		</tbody>
+	</table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#release-table').DataTable({
+			                "paging": false  // Disable pagination
+});
+        });
+    </script>
+</body>
+</html>
