@@ -5,3 +5,8 @@ Flask app for Discogs API - Built so I could sort and filter artist discography 
 1. Download the repo
 2. Run 'flask-search.py' from command line
 3. Open browser to localhost:5000
+
+# Demo
+See working demo: https://tsnavi.pythonanywhere.com/
+
+![image](https://github.com/tsnavi/albinij/assets/145156860/06748a40-1fa8-44b1-9b70-fe6fc189182c)
